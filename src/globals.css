@@ -1,0 +1,94 @@
+/* styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS styles */
+/* Default style for all screen sizes */
+.chat-history-height {
+    height: 65vh;
+}
+
+
+pre {
+    white-space: pre-wrap;
+}
+
+/* @media (min-width: 900px)  {
+    .chat-history-height {
+        height: 100vh;
+    }
+}
+*/
+@media (max-width: 767px) {
+    .w-screen {
+        width: 100%;
+    }
+
+    .h-screen {
+        height: 100%;
+    }
+}
+
+html,
+body {
+    overscroll-behavior: none;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .h-screen {
+        height: -webkit-fill-available;
+    }
+}
+
+.custom-input-text {
+    @apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6 dark:text-white dark:bg-gray-950 dark:border-gray-700 dark:focus:border-white
+}
+
+.custom-textarea {
+    @apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white dark:text-white dark:bg-gray-950 dark:border-gray-700 dark:focus:border-white
+}
+
+.custom-button {
+    @apply flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500
+}
+
+.custom-p {
+    @apply block text-sm leading-6 text-gray-900 dark:text-white
+}
+
+.custom-h2 {
+    @apply text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight dark:text-white
+}
+
+.custom-label {
+    @apply block text-sm font-medium leading-6 text-gray-900 dark:text-white
+}
+
+.custom-main-div {
+    @apply flex items-center justify-between mb-8
+}
+
+.custom-menu-option {
+    @apply -m-2.5 block p-2.5 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100
+}
+
+.custom-div-title {
+    @apply px-4 py-20 sm:px-6 lg:px-20 lg:py-10
+}
+
+.custom-a {
+    @apply block px-3 py-1 text-sm leading-6 text-gray-900 dark:text-white
+}
+
+.custom-ul {
+    @apply divide-y divide-gray-100
+}
+
+.custom-button-2 {
+    @apply flex-1 justify-center items-center px-4 py-2 text-sm border flex gap-2 border-slate-200 rounded-md text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150
+}
+
+.editable div {
+    white-space: normal !important;
+}

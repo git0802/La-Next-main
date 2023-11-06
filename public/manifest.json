@@ -1,0 +1,16 @@
+{
+  "name": "Learn Anything",
+  "short_name": "LA",
+  "description": "Learn Anything",
+  "display": "standalone",
+  "start_url": "/home",
+  "background_color": "#0f4a73",
+  "theme_color": "#0f4a73",
+  "icons": [
+    {
+      "src": "touch-icon.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    }
+  ]
+}
