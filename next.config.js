@@ -2,10 +2,10 @@
 
 // module.exports = {
 const nextConfig = {
-  i18n: {
-    locales: ['en', 'fr', 'de'],
-    defaultLocale: 'en',
-  },
+  // i18n: {
+  //   locales: ['en', 'fr', 'de'],
+  //   defaultLocale: 'en',
+  // },
   reactStrictMode: false,
   images: {
     remotePatterns: [
@@ -17,6 +17,7 @@ const nextConfig = {
       },
     ],
     domains: ['images.unsplash.com']
-  }
+  },
+  output: "export"
 };
 module.exports = nextConfig;

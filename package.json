@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "static": "next build && next export"
   },
   "dependencies": {
+    "@capacitor-community/text-to-speech": "^3.0.1",
     "@capacitor/core": "^5.5.1",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
