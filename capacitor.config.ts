@@ -3,7 +3,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.example.app',
   appName: 'learn-next',
-  webDir: '.next/export',
+  webDir: 'out',
   server: {
     androidScheme: 'https'
   }

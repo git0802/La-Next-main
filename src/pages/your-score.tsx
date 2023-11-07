@@ -2,7 +2,7 @@ import { useState, useEffect, Fragment } from "react";
 import { useUserAuth } from "../context/userAuthContext";
 import { useRouter } from 'next/router';
 import { apiCall } from "@/utils/apiClient";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 import { Quiz, Score } from "@/utils/types";
 
 // components

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useUserAuth } from "../context/userAuthContext";
 import { apiCall } from "@/utils/apiClient";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 
 // components
 import Button from "@/app/components/Button"; // button component
@@ -75,7 +75,6 @@ import withAuthorization from "./withAuthorization";
 
   // when activeQuiz.questions.length changes add navigation items (questions) to sidebar
   useEffect(() => {
-
     if (activeQuiz?.questions)
       setNavigation(
         activeQuiz.questions.map((question, index) => {
@@ -86,8 +85,7 @@ import withAuthorization from "./withAuthorization";
           };
         })
       );
-
-  }, [activeQuiz?.questions?.length]);
+  }, [activeQuiz?.questions, t]);
 
   // update Form values when active question changes
   useEffect(() => {

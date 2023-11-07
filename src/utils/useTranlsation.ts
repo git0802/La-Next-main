@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-export-i18n';
 import { useEffect } from 'react';
 
 export const useCustomTranslation = () => {
@@ -8,8 +8,8 @@ export const useCustomTranslation = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        i18n.changeLanguage(router.locale ?? "en");
-    }, [router.locale, i18n]);
+        i18n?.changeLanguage(router.locale ?? "de");
+    }, [router, i18n]);
 
     return { t };
 };

@@ -16,8 +16,9 @@ const nextConfig = {
         pathname: "**",
       },
     ],
-    domains: ['images.unsplash.com']
+    domains: ['images.unsplash.com'],
+    unoptimized: true
   },
-  output: "export"
+  output: "export",
 };
 module.exports = nextConfig;

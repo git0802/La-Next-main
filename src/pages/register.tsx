@@ -45,7 +45,7 @@ function Register() {
       }
     }
     get_token_value();
-  }, [session]);
+  }, [session, register]); // added 'register' to the dependencies array
 
   function processLogin() {
     router.push(redirect);

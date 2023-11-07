@@ -132,7 +132,7 @@ function UserAuthContextProvider({ children }) {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [router]);
 
   // Values to Export
   const values = {

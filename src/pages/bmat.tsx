@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, CloudArrowUpIcon, LockClosedIcon, ServerIcon, CheckIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -57,11 +58,7 @@ export default function Example() {
             <div className="flex lg:flex-1">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt=""
-                />
+                <Image className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" layout="fill" />
               </a>
             </div>
             <div className="flex lg:hidden">
@@ -93,11 +90,7 @@ export default function Example() {
               <div className="flex items-center justify-between">
                 <a href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
-                  />
+                  <Image className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" layout="fill" />
                 </a>
                 <button
                   type="button"
@@ -171,7 +164,7 @@ export default function Example() {
               </div>
               <div className="mt-16 flow-root sm:mt-24">
                 <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                  <img
+                  <Image
                     src="app-screenshot.jpg"
                     alt="App screenshot"
                     width={2432}
@@ -223,7 +216,7 @@ export default function Example() {
                 </dl>
               </div>
             </div>
-            <img
+            <Image
               src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
               alt="Product screenshot"
               className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
@@ -324,7 +317,7 @@ export default function Example() {
               </blockquote>
             </div>
             <div className="col-end-1 w-16 lg:row-span-4 lg:w-72">
-              <img
+              <Image
                 className="rounded-xl bg-indigo-50 lg:rounded-3xl"
                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=576&h=576&q=80"
                 alt=""

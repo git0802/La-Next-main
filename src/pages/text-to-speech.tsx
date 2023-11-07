@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 import { TextToSpeech } from "@capacitor-community/text-to-speech";
 
 // components

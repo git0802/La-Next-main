@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 import { useRouter } from 'next/router';
 import { useUserAuth } from "../context/userAuthContext";
 

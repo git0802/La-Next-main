@@ -41,7 +41,7 @@ const MathquillContainer: React.FC<MathquillContainerProps> = ({
     const latex = answers[activeQuestion] ?? ""
     inputValues = latex.split("\n");
     setInputs([0, 1, 2, 3, 4, 5, 6]);
-  }, [activeQuestion]);
+  }, [activeQuestion, answers]);
 
   const handleKeyDown = (
     e: KeyboardEvent,

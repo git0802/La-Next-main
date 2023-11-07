@@ -1,6 +1,6 @@
 import { FullScore, Quiz } from "@/utils/types";
 import { useState } from "react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 import dynamic from "next/dynamic";
 import "../app/components/mathquill.css";
 import withAuthorization from "./withAuthorization";

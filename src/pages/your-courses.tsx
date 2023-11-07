@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useUserAuth } from "../context/userAuthContext";
 import Link from "next/link";
 import { apiCall } from "@/utils/apiClient";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 import { Course } from "@/utils/types";
 
 // components

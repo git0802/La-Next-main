@@ -52,7 +52,7 @@ export default function Login() {
       }
     }
     get_token_value();
-  }, [session]);
+  }, [session, register]);
 
   // Redirect user if already logged in
   useEffect(() => {

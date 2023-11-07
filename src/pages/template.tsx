@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 import { apiCall } from "@/utils/apiClient";
 
 import Modal from "@/app/components/Modal";
@@ -20,13 +20,13 @@ const Profile = () => {
   const [_msg, setMessage] = useState("");
   const [msgType, setMsgType] = useState(0);
 
-  const { i18n } = useTranslation();
-  // console.log(router.locale)
-  useEffect(() => {
-    //@ts-ignore
-    i18n.changeLanguage(router.locale ?? "en");
+  // const { i18n } = useTranslation();
+  // // console.log(router.locale)
+  // useEffect(() => {
+  //   //@ts-ignore
+  //   i18n.changeLanguage(router.locale ?? "en");
     
-  }, [router.locale, i18n]);
+  // }, [router.locale, i18n]);
   useEffect(() => {
     apiCall('/quizzes')
       .then((data: any[] | string) => {

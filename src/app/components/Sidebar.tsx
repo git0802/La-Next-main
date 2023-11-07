@@ -19,6 +19,10 @@ import {
 import { NavigationItem } from '@/utils/types';
 import Skeleton from './Skeleton';
 
+import {
+    LanguageSwitcher,
+  } from "next-export-i18n";
+
 function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(' ')
 }
@@ -91,8 +95,13 @@ export default function Sidebar({ sidebarOpen,
 
 
                     <div className="flex px-6 flex-col gap-y-5 overflow-y-auto bg-indigo-600 dark:bg-gray-900 pb-2 w-72 ">
-                        <div className="h-16 items-center pt-5">
+                        <div className="h-26 items-center mt-10 flex flex-col gap-2">
                             <ThemeToggleButton />
+                            <div className="text-s font-semibold leading-6 text-indigo-200">
+                                <LanguageSwitcher lang="en">English</LanguageSwitcher> |{" "}
+                                <LanguageSwitcher lang="de">Dutch</LanguageSwitcher> |{" "}
+                                <LanguageSwitcher lang="fr">French</LanguageSwitcher>
+                            </div>
                         </div>
                         <div className="text-s font-semibold leading-6 text-indigo-200">{head} {quizLink ?
                             (<Link href={((parseInt(quizLink.split(",")[0])) ? "your-score" : "edit-quiz") + "#" + quizLink.split(",")[0]}>

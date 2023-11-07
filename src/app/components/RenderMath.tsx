@@ -14,6 +14,7 @@ const RenderMath: React.FC<Props> = ({ content, activeQuestion }) => {
         { ssr: false }
     );
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const MemoizedDynamicStaticMathField = useMemo(
         () => React.memo(DynamicStaticMathField, (prevProps, nextProps) => prevProps.children === nextProps.children),
         []
@@ -25,7 +26,7 @@ const RenderMath: React.FC<Props> = ({ content, activeQuestion }) => {
             if (index % 2 === 0) {
                 return part;
             } else {
-                return <img key={index} src={"/quizzes/" + part + ".png"} alt={part + " image"} className='w-full md:max-w-lg m-auto' />
+                return <Image key={index} src={"/quizzes/" + part + ".png"} alt={part + " image"} className='w-full md:max-w-lg m-auto' layout='fill' />
             }
         });
     };

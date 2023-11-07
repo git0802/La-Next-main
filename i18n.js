@@ -10,9 +10,9 @@
 // });
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import enTranslation from "./public/locales/en/common.json";
-import frTranslation from "./public/locales/fr/common.json";
-import deTranslationde from "./public/locales/de/common.json"
+import enTranslation from "./i18n/translation.en.json";
+import frTranslation from "./i18n/translation.fr.json";
+import deTranslation from "./i18n/translation.de.json"
 
 const resources = {
   en: {
@@ -22,7 +22,7 @@ const resources = {
     translation: frTranslation,
   },
   de: {
-    translation: deTranslationde
+    translation: deTranslation
   }
 };
 
