@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { useCustomTranslation } from '../utils/useTranlsation';
+import { useCustomTranslation } from "../utils/useTranlsation";
 
 // Formik
 import { useFormik } from "formik";
@@ -16,7 +16,6 @@ import { useModal } from "@/context/modalContext";
 import { getSession, useSession } from "next-auth/react";
 // For putting user details on DB
 import { signIn } from "next-auth/react";
-
 
 export default function Login() {
   const router = useRouter();
@@ -45,35 +44,39 @@ export default function Login() {
         );
         if (data.success == true) {
           let redirct_social = localStorage.getItem("redirct_social");
-          if (redirct_social && !redirct_social?.includes("login") && !redirct_social?.includes("register")) {
+          if (
+            redirct_social &&
+            !redirct_social?.includes("login") &&
+            !redirct_social?.includes("register")
+          ) {
             setRedirect(redirct_social);
           }
         }
       }
     }
     get_token_value();
-  }, [session, register]);
+  }, [session]);
 
   // Redirect user if already logged in
   useEffect(() => {
     if (user) {
-
       if (session) {
         let redirct_social = localStorage.getItem("redirct_social");
-        if (redirct_social && !redirct_social?.includes("login") && !redirct_social?.includes("register")) {
+        if (
+          redirct_social &&
+          !redirct_social?.includes("login") &&
+          !redirct_social?.includes("register")
+        ) {
           localStorage.setItem("redirct_social", "");
           setRedirect(redirct_social);
         }
-        
+
         setTimeout(() => {
           processLogin();
         }, 500);
-        console.log(redirct_social, redirect, user, session);
-      }
-      else {
+      } else {
         processLogin();
       }
-
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, session]);
@@ -100,20 +103,15 @@ export default function Login() {
               localStorage.setItem("redirct", "");
               setRedirect(url);
             }
-            processLogin()
-          }
-          else {
+            processLogin();
+          } else {
             showModal(data?.message);
           }
+        } catch (ex) {
+          showModal("something-went-wrong");
         }
-        catch (ex) {
-          console.log(ex)
-          showModal("something went wrong");
-        }
-      }
-      catch (ex) {
-        console.log(ex)
-        showModal("something went wrong");
+      } catch (ex) {
+        showModal("something-went-wrong");
       }
     },
   });
@@ -124,13 +122,11 @@ export default function Login() {
         className="flex min-h-full h-screen h-[100svh] w-screen flex-1 flex-col justify-center px-6 lg:px-8 bg-gray-100"
         onSubmit={formik.handleSubmit}
       >
-        {
-          session &&
-
+        {session && (
           <div className="fixed inset-0 flex items-center justify-center z-50 bg-white opacity-75">
             <div className="animate-spin h-12 w-12 border-t-2 border-b-2 border-purple-500 rounded-full"></div>
           </div>
-        }
+        )}
 
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -139,7 +135,6 @@ export default function Login() {
         </div>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="space-y-6 bg-white p-10 rounded-md shadow-md">
-
             <div>
               <label
                 htmlFor="email"
@@ -201,10 +196,7 @@ export default function Login() {
               </p>
             ) : null}
             <div>
-              <button
-                type="submit"
-                className="custom-button"
-              >
+              <button type="submit" className="custom-button">
                 {t("login")}
               </button>
             </div>
@@ -222,10 +214,15 @@ export default function Login() {
                   type="button"
                   onClick={() => {
                     let _url = localStorage.getItem("redirct");
-                    if (_url && _url?.length >= 5 && !_url?.includes("login") && !_url?.includes("register")) {
+                    if (
+                      _url &&
+                      _url?.length >= 5 &&
+                      !_url?.includes("login") &&
+                      !_url?.includes("register")
+                    ) {
                       localStorage.setItem("redirct_social", _url);
                     }
-                    signIn('google', { redirect: false })
+                    signIn("google", { redirect: false });
                   }}
                   className="custom-button-2"
                 >
@@ -249,10 +246,15 @@ export default function Login() {
                   type="button"
                   onClick={() => {
                     let _url = localStorage.getItem("redirct");
-                    if (_url && _url?.length >= 5 && !_url?.includes("login") && !_url?.includes("register")) {
+                    if (
+                      _url &&
+                      _url?.length >= 5 &&
+                      !_url?.includes("login") &&
+                      !_url?.includes("register")
+                    ) {
                       localStorage.setItem("redirct_social", _url);
                     }
-                    signIn('azure-ad', { redirect: false });
+                    signIn("azure-ad", { redirect: false });
                   }}
                   className="custom-button-2"
                 >
