@@ -12,20 +12,44 @@ export default function CreateQuizPage() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  let [voiceIndex, setVoiceIndex] = useState<number | null>(null);
+
   const speak = async () => {
-    await TextToSpeech.speak({
-      text: "Text to speech is working",
-      lang: "en-US",
-      rate: 1.0,
-      pitch: 1.0,
-      volume: 1.0,
-      category: "ambient",
-    });
+    if (voiceIndex !== null) {
+      await TextToSpeech.speak({
+        text: "Text to speech is working",
+        lang: "en-US",
+        voice: voiceIndex,
+        rate: 1.0,
+        pitch: 1.0,
+        volume: 1.0,
+        category: "ambient",
+      });
+    }
+  };
+
+  const getSupportedLanguages = async () => {
+    const languages = await TextToSpeech.getSupportedLanguages();
+    console.log("Language: ", languages);    
+  };
+
+  const getSupportedVoices = async () => {
+    const result = await TextToSpeech.getSupportedVoices();
+  // make sure to check if result.voices is not undefined before using findIndex
+  if (result.voices) { 
+    const alexVoiceIndex = result.voices.findIndex(voice => voice.name === 'Alex');
+    setVoiceIndex(alexVoiceIndex);
+    console.log("Voices: ", result.voices); 
+  } else {
+    console.log('No voices supported'); 
+  } 
   };
 
   useEffect(() => {
     // Update state after mount to access `window`
     setSidebarOpen(window.innerWidth >= 1024);
+    getSupportedLanguages();
+    getSupportedVoices();
   }, []);
 
   return (
