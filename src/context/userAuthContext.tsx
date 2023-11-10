@@ -1,13 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import {
-  signInWithPopup,
-} from "firebase/auth";
+
 import { useRouter } from "next/router";
-import {
-  auth,
-  googleProvider,
-  microsoftProvider,
-} from "../utils/firebase.config";
+
 import axios from 'axios';
 import Contant from "../context/contant";
 import { signOut, useSession } from "next-auth/react";
@@ -43,23 +37,11 @@ function UserAuthContextProvider({ children }) {
   };
 
   const logInWithGoogle = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      setUser(result.user);
-      return result.user;
-    } catch (error: any) {
-      return error;
-    }
+
   };
 
   const logInWithMicrosoft = async () => {
-    try {
-      const result = await signInWithPopup(auth, microsoftProvider);
-      setUser(result.user);
-      return result.user;
-    } catch (error: any) {
-      return error;
-    }
+
   };
 
   const register = async (email: string, password: string, login_type: string, ex_data: any) => {

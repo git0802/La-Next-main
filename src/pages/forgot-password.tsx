@@ -7,8 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { sendPasswordResetEmail } from "firebase/auth";
-import auth from "../utils/firebase.config";
+
 import { useCustomTranslation } from '../utils/useTranlsation';
 import { useModal } from "@/context/modalContext";
 

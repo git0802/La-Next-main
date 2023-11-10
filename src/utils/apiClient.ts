@@ -1,5 +1,4 @@
-// Importing Firebase authentication configuration and type definitions
-import auth from './firebase.config';
+
 import { ApiResponse, Quiz, QuizPostData } from './types';
 
 // Function to get the current user's JWT token
