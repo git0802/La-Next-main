@@ -95,6 +95,7 @@ function UserAuthContextProvider({ children }) {
     localStorage.clear();
 
     setUser(null);
+    localStorage.setItem("redirct", "");
     router.push('/login');
   };
 

@@ -43,7 +43,7 @@ export default function Login() {
           JSON.stringify(_Session)
         );
         if (data.success == true) {
-          let redirct_social = localStorage.getItem("redirct_social");
+          let redirct_social = localStorage.getItem("redirct");
           if (
             redirct_social &&
             !redirct_social?.includes("login") &&
@@ -61,14 +61,15 @@ export default function Login() {
   useEffect(() => {
     if (user) {
       if (session) {
-        let redirct_social = localStorage.getItem("redirct_social");
+        let redirct_social = localStorage.getItem("redirct");
+        console.log("redirct_social", redirct_social);
+        
         if (
           redirct_social &&
           !redirct_social?.includes("login") &&
           !redirct_social?.includes("register")
         ) {
-          localStorage.setItem("redirct_social", "");
-          setRedirect(redirct_social);
+          localStorage.setItem("redirct", "");
         }
 
         setTimeout(() => {
@@ -101,7 +102,6 @@ export default function Login() {
             let url = localStorage.getItem("redirct");
             if (url && !url?.includes("login") && !url?.includes("register")) {
               localStorage.setItem("redirct", "");
-              setRedirect(url);
             }
             processLogin();
           } else {
@@ -220,7 +220,7 @@ export default function Login() {
                       !_url?.includes("login") &&
                       !_url?.includes("register")
                     ) {
-                      localStorage.setItem("redirct_social", _url);
+                      localStorage.setItem("redirct", _url);
                     }
                     signIn("google", { redirect: false });
                   }}
@@ -252,7 +252,7 @@ export default function Login() {
                       !_url?.includes("login") &&
                       !_url?.includes("register")
                     ) {
-                      localStorage.setItem("redirct_social", _url);
+                      localStorage.setItem("redirct", _url);
                     }
                     signIn("azure-ad", { redirect: false });
                   }}
