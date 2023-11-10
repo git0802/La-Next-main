@@ -7,10 +7,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
 import { useCustomTranslation } from '../utils/useTranlsation';
 import { useModal } from "@/context/modalContext";
-
+import axios from "axios";
+import Contant from "../context/contant";
 function ForgotPassword() {
 
   //@ts-ignore
@@ -27,11 +27,35 @@ function ForgotPassword() {
     }),
     onSubmit: async () => {
       try {
-        await sendPasswordResetEmail(auth, formik.values.email);
+        const formData = new FormData();
+        formData.append('email', formik.values.email);
+        formData.append('action', 'reset_password_user');
+
+        axios.post(Contant.API, formData)
+          .then(response => {
+            try {
+              let data = response.data;
+              if (data.success == true) {
+                showModal(t("password_reset_email_sent"), 2);
+              }
+              else {
+                showModal(data?.message);
+              }
+            }
+            catch (ex) {
+              console.log(ex)
+              showModal("something went wrong");
+            }
+          })
+          .catch(error => {
+            console.log(error)
+            showModal("something went wrong");
+          });
+
         showModal(t("password_reset_email_sent"), 2);
       } catch (error) {
         //@ts-ignore
-        showModal(error.message.split("(")[1].split(")")[0]);
+        showModal("something went wrong");
       }
     },
   });

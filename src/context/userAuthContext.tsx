@@ -1,12 +1,11 @@
 import { createContext, useContext, useState, useEffect } from "react";
-
 import { useRouter } from "next/router";
-
 import axios from 'axios';
 import Contant from "../context/contant";
 import { signOut, useSession } from "next-auth/react";
 //@ts-ignore
 const userAuthContext = createContext();
+import { getToken } from "@/utils/apiClient";
 
 //@ts-ignore
 function UserAuthContextProvider({ children }) {
@@ -27,6 +26,7 @@ function UserAuthContextProvider({ children }) {
       //@ts-ignore
       if (data.success == true) {
         localStorage.setItem("token", data?.token);
+        localStorage.setItem("expiry", data?.expiry);
         localStorage.setItem("user", JSON.stringify(data?.user));
         setUser(data?.user);
       }
@@ -57,6 +57,7 @@ function UserAuthContextProvider({ children }) {
       //@ts-ignore
       if (data.success == true) {
         localStorage.setItem("token", data?.token);
+        localStorage.setItem("expiry", data?.expiry);
         localStorage.setItem("user", JSON.stringify(data?.user));
         setUser(data?.user);
       }
@@ -77,7 +78,6 @@ function UserAuthContextProvider({ children }) {
     localStorage.clear();
 
     setUser(null);
-    localStorage.setItem("redirct", "");
     router.push('/login');
   };
 
@@ -90,7 +90,7 @@ function UserAuthContextProvider({ children }) {
       //check session is valid or not
       const config = {
         headers: {
-          'Authorization': localStorage.getItem("token"),
+          'Authorization': await getToken(),
           // Other headers can be added here as needed
         }
       };
@@ -103,10 +103,11 @@ function UserAuthContextProvider({ children }) {
       }
       else {
         localStorage.removeItem("user");
+        localStorage.removeItem("expiry");
         localStorage.removeItem("token");
         localStorage.setItem("redirct", window.location.href);
 
-        if (!["/reset-password", "/forgot-password", "/register"].includes(router?.pathname)) {
+        if (!["/reset-password", "/forgot-password", "/register", "/"].includes(router?.pathname)) {
           router.push("/login");
         }
       }
@@ -115,7 +116,7 @@ function UserAuthContextProvider({ children }) {
     return () => {
       unsubscribe();
     };
-  }, [router]);
+  }, []);
 
   // Values to Export
   const values = {
@@ -126,7 +127,7 @@ function UserAuthContextProvider({ children }) {
     logInWithMicrosoft,
     register,
     logOut,
-    getUser,
+    getUser
   };
 
   // Provider
