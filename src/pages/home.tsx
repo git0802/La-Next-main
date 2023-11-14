@@ -14,7 +14,9 @@ import Contant from "../context/contant";
 import Background from "@/app/components/Background";
 import Sidebar from "@/app/components/Sidebar";
 import withAuthorization from "./withAuthorization";
-function CreateQuizPage() {
+import { getToken } from "@/utils/apiClient";
+
+function Home() {
 
   const [username, setUsername] = useState('');
   const [updatingUsername, setUpdatingUsername] = useState(false);
@@ -35,7 +37,7 @@ function CreateQuizPage() {
 
       const config = {
         headers: {
-          'Authorization': localStorage.getItem("token"),
+          'Authorization': await getToken(),
           // Other headers can be added here as needed
         }
       };
@@ -70,23 +72,28 @@ function CreateQuizPage() {
   }
 
   useEffect(() => {
-    if (user) {
-      try {
-        const config = {
-          headers: {
-            'Authorization': localStorage.getItem("token"),
-            // Other headers can be added here as needed
-          }
-        };
-        axios(Contant.API, config).then((data) => {
-          let _data = data?.data;
-          if (_data?.user) {
-            setUsername(_data?.user?.user_name);
-          }
-        });
-      } catch (e) {
+
+    async function getTokenData() {
+      if (user) {
+        try {
+          const config = {
+            headers: {
+              'Authorization': await getToken(),
+              // Other headers can be added here as needed
+            }
+          };
+          axios(Contant.API, config).then((data) => {
+            let _data = data?.data;
+            if (_data?.user) {
+              setUsername(_data?.user?.user_name);
+            }
+          });
+        } catch (e) {
+        }
       }
     }
+    getTokenData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
@@ -187,7 +194,6 @@ function CreateQuizPage() {
                 <input
                   type="text"
                   value={username}
-                  defaultValue={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="block w-[300px] mt-4 mb-4 rounded-md custom-input-text"
                 />
@@ -211,4 +217,4 @@ function CreateQuizPage() {
 
 }
 
-export default withAuthorization(CreateQuizPage);
+export default withAuthorization(Home);

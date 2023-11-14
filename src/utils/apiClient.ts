@@ -1,15 +1,41 @@
-// Importing Firebase authentication configuration and type definitions
-import auth from './firebase.config';
 import { ApiResponse, Quiz, QuizPostData } from './types';
+import axios from 'axios';
+import Contant from "../context/contant";
 
 // Function to get the current user's JWT token
-const getToken = async (): Promise<string | null> => {
-    // const user = auth.currentUser;
-    // if (user) {
-    //     return user.getIdToken(); // This returns a promise with the JWT token
-    // }
-    // return null;
-    return localStorage.getItem("token");
+export const getToken = async () => {
+
+    const unixTimestamp = localStorage.getItem("expiry");
+    if (unixTimestamp) {
+        //@ts-ignore
+        const date = new Date(unixTimestamp * 1000);
+    
+        console.log(date.toLocaleString());
+        if (date < new Date() ) {
+
+            console.log("Expire and generating new one");
+            const formData = new FormData();
+            formData.append('action', 'generateToken');
+            const config = {
+                headers: {
+                    'Authorization': localStorage.getItem("token"),
+                }
+            };
+            const user = await axios.post(Contant.API, formData, config);
+            let data = user.data;
+            //@ts-ignore
+            if (data.success == true) {
+                localStorage.setItem("token", data?.token);
+                localStorage.setItem("expiry", data?.expiry);
+            }
+            // console.log("old token", localStorage.getItem("token"));
+            // console.log("new Token", data?.token);
+            return data?.token;
+        }
+        else {
+            return localStorage.getItem("token");
+        }
+    }
 };
 
 // Function to get the base API URL from environment variables

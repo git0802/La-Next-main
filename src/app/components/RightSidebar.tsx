@@ -70,19 +70,25 @@ export default function RightSidebar({
 }: RightSidebarProps) {
     const listRef = useRef(null);
 
-
-    console.log("explanationIsVisible",explanationIsVisible);
     // this is required to make the chat text box display properly on mobile
     useEffect(() => {
         function setDynamicHeight() {
             const div = document.querySelector('.chat-window');
             let windowHeight = window.innerHeight;
 
-            if(explanationIsVisible)
-            {
-                windowHeight = windowHeight- 150;
+            //@ts-ignore
+            let _height = document.querySelector(".overflow-y-scroll").offsetHeight;
+            console.log("_height", windowHeight, _height);
+            if (explanationIsVisible) {
+                if (_height) {
+                    _height = parseInt(_height);
+                }
+                else {
+                    _height = 150;
+                }
+
+                windowHeight = windowHeight - _height;
             }
-            //it's a csae of mobile 
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 //@ts-ignore
                 div.style.height = `${windowHeight - 300}px`;
@@ -91,6 +97,7 @@ export default function RightSidebar({
                 //@ts-ignore
                 div.style.height = `${windowHeight - 250}px`;
             }
+            scrollToBottom();
         }
 
         // Add event listener for window resize
@@ -125,7 +132,7 @@ export default function RightSidebar({
         scrollToBottom();
     }, [chatResponse]);
 
-    const chatInputRef = useRef < HTMLInputElement > (null);
+    const chatInputRef = useRef<HTMLInputElement>(null);
 
     const router = useRouter();
 

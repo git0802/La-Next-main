@@ -37,7 +37,7 @@ function Register() {
           JSON.stringify(_Session)
         );
         if (data.success == true) {
-          let url = localStorage.getItem("redirct_social");
+          let url = localStorage.getItem("redirct");
           if (url && !url?.includes("login") && !url?.includes("register")) {
             setRedirect(url);
           }
@@ -56,10 +56,9 @@ function Register() {
     if (user) {
 
       if (session) {
-        let redirct_social = localStorage.getItem("redirct_social");
+        let redirct_social = localStorage.getItem("redirct");
         if (redirct_social && !redirct_social?.includes("login") && !redirct_social?.includes("register")) {
-          localStorage.setItem("redirct_social", "");
-          setRedirect(redirct_social);
+          localStorage.setItem("redirct", "");
         }
 
         setTimeout(() => {
@@ -105,7 +104,6 @@ function Register() {
           let url = localStorage.getItem("redirct");
           if (url && !url?.includes("login") && !url?.includes("register")) {
             localStorage.setItem("redirct", "");
-            setRedirect(url);
           }
           processLogin()
         }
@@ -252,7 +250,7 @@ function Register() {
                   onClick={() => {
                     let _url = localStorage.getItem("redirct");
                     if (_url && _url?.length >= 5 && !_url?.includes("login") && !_url?.includes("register")) {
-                      localStorage.setItem("redirct_social", _url);
+                      localStorage.setItem("redirct", _url);
                     }
                     signIn('google', { redirect: false })
                   }}
@@ -275,7 +273,7 @@ function Register() {
                   onClick={() => {
                     let _url = localStorage.getItem("redirct");
                     if (_url && _url?.length >= 5 && !_url?.includes("login") && !_url?.includes("register")) {
-                      localStorage.setItem("redirct_social", _url);
+                      localStorage.setItem("redirct", _url);
                     }
                     signIn('azure-ad', { redirect: false });
                   }}

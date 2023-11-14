@@ -1,5 +1,6 @@
 // GET Function
-import { apiServerCall } from "../../../utils/apiClient"
+// import { apiServerCall } from "../../../utils/apiClient"
+import { apiServerCall } from '@/utils/apiClient';
 import { NextResponse } from 'next/server'
 
 interface RequestData {
